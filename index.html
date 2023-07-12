@@ -210,7 +210,10 @@
                             <div class="border border-gray-300 border-dashed rounded min-w-125px py-3 px-4 me-6 mb-3">
                                 <!--begin::Number-->
                                 <div class="d-flex align-items-center">
-                                    <i class="ki-outline ki-arrow-up fs-2 text-success me-2"></i>                                    <div class="fs-2 fw-bold counted" data-kt-countup="true" data-kt-countup-value="4500" data-kt-countup-prefix="$" data-kt-initialized="1">$4,500</div>
+                                    <i class="ki-outline ki-arrow-up fs-2 text-success me-2"></i>                                    
+                                    <div class="counter fw-bold">
+                                        <h3 data-target="4500" class="count">0</h3>
+                                    </div>
                                 </div>
                                 <!--end::Number-->
 
@@ -1700,8 +1703,8 @@
                         <!--end::Date added-->
 
                         <!--begin::Price-->
-                        <td class="text-end">
-                            $4500                        </td>
+                        <td data-target="4500" class="count text-end">
+                            $0                       </td>
                         <!--end::Price-->
 
                         <!--begin::Status-->
@@ -1795,9 +1798,30 @@
         <!--end::Content container-->
     </div>                  
 </body>
+<script>
+      const counters = document.querySelectorAll(".count");
+const speed = 200;
 
-<script src="script.js"></script>
-<script src="WScript.js"></script>
+counters.forEach((counter) => {
+  const updateCount = () => {
+    const target = parseInt(+counter.getAttribute("data-target"));
+    const count = parseInt(+counter.innerText);
+    const increment = Math.trunc(target / speed);
+    console.log(increment);
+
+    if (count < target) {
+      counter.innerText = count + increment;
+      setTimeout(updateCount, 1);
+    } else {
+      count.innerText = target;
+    }
+  };
+  updateCount();
+});
+
+  </script>
+<!-- <script src="script.js"></script>
+<script src="WScript.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
                         
 
